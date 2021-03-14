@@ -96,9 +96,9 @@ export default function About() {
                     <ListItem button>
                         <ListItemIcon>
                             <img
-                                width="60"
+                                width="75"
                                 height="50"
-                                src="https://o.remove.bg/downloads/39ea0c34-6ee2-45d7-9145-ee4df0ef7bad/kisspng-django-web-development-web-framework-python-softwa-django-5b45d913f29027.4888902515313042119936-removebg-preview.png"
+                                src="https://i.imgur.com/V5cY8XU.png"
                             />
                         </ListItemIcon>
                         <ListItemText primary="Django" />
@@ -106,7 +106,7 @@ export default function About() {
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
                             <img
-                                src="https://o.remove.bg/downloads/fe9e2567-a8f2-4023-aafa-123d5d6dbc62/react-1-282599-removebg-preview.png"
+                                src="https://cdn.iconscout.com/icon/free/png-512/react-native-555397.png"
                                 witdh="50"
                                 height="50"
                             />
@@ -119,7 +119,7 @@ export default function About() {
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
                                     <img
-                                        src="https://o.remove.bg/downloads/457b7582-8e4a-497d-942c-f86f4eaf2ff5/icon-square-big-removebg-preview.png"
+                                        src="https://i.imgur.com/4FVpvz8.png"
                                         height="50"
                                         width="50"
                                     />
@@ -133,7 +133,7 @@ export default function About() {
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
                                     <img
-                                        src="https://o.remove.bg/downloads/0a015ded-a11f-4350-bd83-22006af60fea/58110630-8a3c1080-7bb5-11e9-8f16-afa391dc4223-removebg-preview.png"
+                                        src="https://user-images.githubusercontent.com/3025322/87547253-bf050400-c6a2-11ea-950a-280311bc6cc8.png"
                                         height="50"
                                         width="50"
                                     />
