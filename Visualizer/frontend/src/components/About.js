@@ -9,12 +9,9 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Collapse from '@material-ui/core/Collapse'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import DraftsIcon from '@material-ui/icons/Drafts'
-import SendIcon from '@material-ui/icons/Send'
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
-import StarBorder from '@material-ui/icons/StarBorder'
+import { Navbar, Nav } from 'react-bootstrap'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,11 +24,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-
 const pages = {
     PROJECT: 'pages.project',
-    FRAMEWORKS: 'pages.frameworks',
-    DEVS: 'pages.devs',
+    FRAMEWORKS: 'pages.frameworks'
 }
 
 export default function About() {
@@ -93,33 +88,28 @@ export default function About() {
                             component="div"
                             id="nested-list-subheader"
                         >
-                            Nested List Items
+                            Frameworks used
                         </ListSubheader>
                     }
                     className={classes.root}
                 >
-                    <ListItem button onClick={handleClick}>
+                    <ListItem button>
                         <ListItemIcon>
-                            <InboxIcon /> {/*TODO: Change to Django Icon*/}
+                            <img
+                                width="60"
+                                height="50"
+                                src="https://o.remove.bg/downloads/39ea0c34-6ee2-45d7-9145-ee4df0ef7bad/kisspng-django-web-development-web-framework-python-softwa-django-5b45d913f29027.4888902515313042119936-removebg-preview.png"
+                            />
                         </ListItemIcon>
                         <ListItemText primary="Django" />
-                        {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <StarBorder />{' '}
-                                    {/* TODO: Change to python logo*/}
-                                </ListItemIcon>
-                                <ListItemText primary="Python" />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
-                            <InboxIcon /> {/* TODO: Change to React logo*/}
+                            <img
+                                src="https://o.remove.bg/downloads/fe9e2567-a8f2-4023-aafa-123d5d6dbc62/react-1-282599-removebg-preview.png"
+                                witdh="50"
+                                height="50"
+                            />
                         </ListItemIcon>
                         <ListItemText primary="React" />
                         {open ? <ExpandLess /> : <ExpandMore />}
@@ -128,10 +118,27 @@ export default function About() {
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
-                                    <StarBorder />
-                                    {/* TODO: Change to Webpack logo*/}
+                                    <img
+                                        src="https://o.remove.bg/downloads/457b7582-8e4a-497d-942c-f86f4eaf2ff5/icon-square-big-removebg-preview.png"
+                                        height="50"
+                                        width="50"
+                                    />
                                 </ListItemIcon>
                                 <ListItemText primary="Webpack" />
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button className={classes.nested}>
+                                <ListItemIcon>
+                                    <img
+                                        src="https://o.remove.bg/downloads/0a015ded-a11f-4350-bd83-22006af60fea/58110630-8a3c1080-7bb5-11e9-8f16-afa391dc4223-removebg-preview.png"
+                                        height="50"
+                                        width="50"
+                                    />
+                                </ListItemIcon>
+                                <ListItemText primary="Babel" />
                             </ListItem>
                         </List>
                     </Collapse>
@@ -139,8 +146,6 @@ export default function About() {
             </Grid>
         )
     }
-
-    const devsPageInfo = () => {}
 
     return (
         <Grid
@@ -151,13 +156,37 @@ export default function About() {
             justify="center"
             style={{ minHeight: '100vh' }}
         >
+            <Navbar bg="light" expand="lg" fixed="top">
+                <Navbar.Brand href="/">UPVisualizer</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="/About">About</Nav.Link>
+                        <Nav.Link href="/Visualize">Visualize</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
             <Grid item xs={12}>
                 <Typography variant="h1" component="h1">
                     About
                 </Typography>
             </Grid>
-            {frameworksPageInfo()}
-            {/* TODO: Implement the state and others */}
+            {page === pages.PROJECT ? projectPageInfo() : frameworksPageInfo()}
+            <Grid item xs={12}>
+                <IconButton
+                    onClick={() => {
+                        page === pages.PROJECT
+                            ? setPage(pages.FRAMEWORKS)
+                            : setPage(pages.PROJECT)
+                    }}
+                >
+                    {page === pages.FRAMEWORKS ? (
+                        <NavigateBeforeIcon />
+                    ) : (
+                        <NavigateNextIcon />
+                    )}
+                </IconButton>
+            </Grid>
         </Grid>
     )
 }

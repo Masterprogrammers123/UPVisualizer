@@ -1,1 +1,2 @@
-# Progress-visualizer
+# UPV: the Ultimate Project Visualizer
+

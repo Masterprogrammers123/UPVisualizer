@@ -5,7 +5,6 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link as link,
 } from 'react-router-dom'
 import HomePage from './HomePage'
 import About from "./About"
