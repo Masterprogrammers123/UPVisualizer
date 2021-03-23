@@ -4,13 +4,27 @@ import { Navbar, Nav } from 'react-bootstrap'
 
 export default function Visualizer() {
     const [isVisualized, setVisualized] = useState(false)
+    const [link, setLink] = useState('')
 
-    const beforeVisualized = () => {}
+    const handleTextFieldChange = (e) => {
+        setLink(e)
+    }
+
+    const beforeVisualized = () => {
+        <Grid item xs={12}>
+            <TextField
+            label="Outlined"
+            placeholder="Enter a Github Repo Link"
+            variant="outlined"
+            onChange={handleTextFieldChange}
+            />
+            test
+        </Grid>
+    }
 
     const visualize = () => {}
-    
-    const afterVisualized = () => {}
 
+    const afterVisualized = () => {}
 
     return (
         <Grid
@@ -31,6 +45,7 @@ export default function Visualizer() {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
+            {beforeVisualized()}
         </Grid>
     )
 }

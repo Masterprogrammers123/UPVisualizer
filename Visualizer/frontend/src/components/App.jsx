@@ -6,8 +6,9 @@ import {
     Switch,
     Route,
 } from 'react-router-dom'
-import HomePage from './HomePage'
-import About from "./About"
+import HomePage from './HomePage.jsx'
+import About from "./About.jsx"
+import Visualizer from "./Visualizer.jsx"
 
 export default function App(props) {
     return (
@@ -15,6 +16,7 @@ export default function App(props) {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/About" component={About} />
+                <Route path="/Visualize" component={Visualizer} />
             </Switch>
         </Router>
     )

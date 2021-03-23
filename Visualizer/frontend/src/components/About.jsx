@@ -103,7 +103,7 @@ export default function About() {
                         </ListItemIcon>
                         <ListItemText primary="Django" />
                     </ListItem>
-                    <ListItem button onClick={handleClick}>
+                    <ListItem button onClick={handleClick}> {/* Defined above */}
                         <ListItemIcon>
                             <img
                                 src="https://cdn.iconscout.com/icon/free/png-512/react-native-555397.png"
