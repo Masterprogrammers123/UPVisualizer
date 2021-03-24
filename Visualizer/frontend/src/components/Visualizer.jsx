@@ -1,28 +1,57 @@
 import React, { useState } from 'react'
-import { Grid, Button, Typography, Link, TextField } from '@material-ui/core'
+import { Grid, Button, Typography, TextField } from '@material-ui/core'
 import { Navbar, Nav } from 'react-bootstrap'
 
 export default function Visualizer() {
+
+    graphs = {
+        BAR: "graphs.barGraph",
+        LINED: "graphs.linedGraph",
+        PIE: "graphs.pieGraph"
+    }
+
     const [isVisualized, setVisualized] = useState(false)
     const [link, setLink] = useState('')
+    const [graph, setGraph] = useState(graphs.BAR)
 
-    const handleTextFieldChange = (e) => {
-        setLink(e)
+    const visualize = () => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        }
+        fetch('/rest/visualize', requestOptions).then((_response) => {
+            pass
+        })
     }
 
     const beforeVisualized = () => {
-        <Grid item xs={12}>
-            <TextField
-            label="Outlined"
-            placeholder="Enter a Github Repo Link"
-            variant="outlined"
-            onChange={handleTextFieldChange}
-            />
-            test
-        </Grid>
+        return (
+            <> 
+                {/* Because in React JSX everything needs to be in one container */}
+                <Grid item xs={12}>
+                    <Typography variant="h3" component="h3">
+                        Visualizer
+                    </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+                        label="Link"
+                        placeholder="Enter a Github Repo Link"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={visualize}
+                    >
+                        Visualize
+                    </Button>
+                </Grid>
+            </>
+        )
     }
-
-    const visualize = () => {}
 
     const afterVisualized = () => {}
 
@@ -45,7 +74,7 @@ export default function Visualizer() {
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
-            {beforeVisualized()}
+            {isVisualized === false ? beforeVisualized() : afterVisualized()}
         </Grid>
     )
 }
