@@ -3,30 +3,45 @@ import { Grid, Button, Typography, TextField } from '@material-ui/core'
 import { Navbar, Nav } from 'react-bootstrap'
 
 export default function Visualizer() {
-
-    graphs = {
-        BAR: "graphs.barGraph",
-        LINED: "graphs.linedGraph",
-        PIE: "graphs.pieGraph"
+    const graphs = {
+        BAR: 'graphs.barGraph',
+        LINED: 'graphs.linedGraph',
+        PIE: 'graphs.pieGraph',
     }
 
     const [isVisualized, setVisualized] = useState(false)
-    const [link, setLink] = useState('')
+    const [name, setName] = useState('')
+    const [owner, setOwner] = useState('')
     const [graph, setGraph] = useState(graphs.BAR)
 
     const visualize = () => {
+        console.log(`Owner: ${owner}\nName: ${name}`)
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                repoOwner: owner,
+                repoName: name,
+            }),
         }
-        fetch('/rest/visualize', requestOptions).then((_response) => {
-            pass
-        })
+        fetch('/rest/visualize', requestOptions)
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+    }
+
+    const handleNameFieldChange = (e) => {
+        setName(e.target.value)
+    }
+
+    const handleOwnerFieldChange = (e) => {
+        setOwner(e.target.value)
     }
 
     const beforeVisualized = () => {
         return (
-            <> 
+            <>
                 {/* Because in React JSX everything needs to be in one container */}
                 <Grid item xs={12}>
                     <Typography variant="h3" component="h3">
@@ -35,9 +50,18 @@ export default function Visualizer() {
                 </Grid>
                 <Grid item xs={12}>
                     <TextField
-                        label="Link"
-                        placeholder="Enter a Github Repo Link"
+                        label="Owner"
+                        color="primary"
+                        placeholder="Enter a Github Repo Owner"
                         variant="outlined"
+                        onChange={handleOwnerFieldChange}
+                    />
+                    <TextField
+                        color="secondary"
+                        label="Name"
+                        placeholder="Enter a Github Repo Name"
+                        variant="outlined"
+                        onChange={handleNameFieldChange}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -53,7 +77,7 @@ export default function Visualizer() {
         )
     }
 
-    const afterVisualized = () => {}
+    const afterVisualized = () => {} // TODO
 
     return (
         <Grid
